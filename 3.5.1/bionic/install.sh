@@ -92,9 +92,9 @@ CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdat
             --with-blas \
             --with-lapack \
             --with-tcltk \
-            --disable-nls \
-            --without-recommended-packages \
-            --prefix=/usr/local/R-${R_VERSION}
+#            --disable-nls \
+#            --without-recommended-packages \
+            --prefix=/usr/local/lib/R-${R_VERSION}
 ## Build and install
 make
 sudo make install
@@ -108,8 +108,8 @@ sudo mkdir -p /usr/local/lib/R-${R_VERSION}/site-library
 sudo chown root:staff /usr/local/lib/R-${R_VERSION}/site-library
 sudo chmod g+wx /usr/local/lib/R-${R_VERSION}/site-library
 ## Fix library path
-echo "R_LIBS_USER='/usr/local/lib/R-${R_VERSION}/site-library'" >> /usr/local/lib/R-${R_VERSION}/etc/Renviron \
-     echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R-${R_VERSION}/site-library:/usr/local/lib/R-${R_VERSION}/library:/usr/lib/R/library'}" >> /usr/local/lib/R-${R_VERSION}/etc/Renviron
+# echo "R_LIBS_USER='/usr/local/lib/R-${R_VERSION}/site-library'" >> /usr/local/R-${R_VERSION}/lib/etc/Renviron
+echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R-${R_VERSION}/site-library'}" >> /usr/local/lib/R-${R_VERSION}/etc/Renviron
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
 MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE}
