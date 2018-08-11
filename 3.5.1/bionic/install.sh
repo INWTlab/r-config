@@ -2,8 +2,8 @@
 ##   URL: https://github.com/INWTlab/r-docker/blob/master/r-ver-ubuntu/Dockerfile
 ##   to be used for VMs instead of Docker images.
 
-BUILD_DATE="2018-07-30"
-R_VERSION="3.5.1"
+BUILD_DATE=${2:-"2018-07-30"}
+R_VERSION=${1:-"3.5.1"}
 # export LC_ALL="en_US.UTF-8"
 # export LANG="en_US.UTF-8"
 
@@ -36,9 +36,8 @@ CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdat
             --with-blas \
             --with-lapack \
             --with-tcltk \
-            --prefix=/usr/local/lib/R/${R_VERSION}
-#            --disable-nls \
-#            --without-recommended-packages \
+            --prefix=/usr/local/lib/R/${R_VERSION} \
+            --disable-nls
 ## Build and install
 make
 make install
@@ -50,7 +49,7 @@ make install
 ## Add a library directory (for user-installed packages)
 mkdir -p /usr/local/lib/R/${R_VERSION}/lib/R/site-library
 ## Fix library path
-echo "R_LIBS_USER=\${R_LIBS_USER-'~/R/x86_64-pc-linux-gnu-library/${R_VERSION}'}" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
+echo "R_LIBS_USER='~/R/x86_64-pc-linux-gnu-library/${R_VERSION}'" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
 echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/${R_VERSION}/lib/R/site-library:/usr/local/lib/R/${R_VERSION}/lib/R/library'}" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
