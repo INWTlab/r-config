@@ -7,64 +7,8 @@ export R_VERSION="3.5.1"
 # export LC_ALL="en_US.UTF-8"
 # export LANG="en_US.UTF-8"
 
-sudo apt-get update && sudo apt-get install -y --no-install-recommends \
-    bash-completion \
-    ca-certificates \
-    file \
-    fonts-texgyre \
-    g++ \
-    gfortran \
-    gsfonts \
-    libblas-dev \
-    libbz2-1.0 \
-    libcurl3 \
-    libicu60 \
-    libjpeg62 \
-    libopenblas-dev \
-    libpangocairo-1.0-0 \
-    libpcre3 \
-    libpng16-16 \
-    libreadline7 \
-    libtiff5 \
-    liblzma5 \
-    locales \
-    make \
-    unzip \
-    zip \
-    zlib1g
-  ## -- --
-  # && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen \
-  # && locale-gen en_US.utf8 \
-  # && /usr/sbin/update-locale LANG=en_US.UTF-8 \
-BUILDDEPS="curl \
-    default-jdk \
-    libbz2-dev \
-    libcairo2-dev \
-    libcurl4-openssl-dev \
-    libpango1.0-dev \
-    libjpeg-dev \
-    libicu-dev \
-    libpcre3-dev \
-    libpng-dev \
-    libreadline-dev \
-    libtiff5-dev \
-    liblzma-dev \
-    libx11-dev \
-    libxt-dev \
-    perl \
-    tcl8.6-dev \
-    tk8.6-dev \
-    texinfo \
-    texlive-extra-utils \
-    texlive-fonts-recommended \
-    texlive-fonts-extra \
-    texlive-latex-recommended \
-    x11proto-core-dev \
-    xauth \
-    xfonts-base \
-    xvfb \
-    zlib1g-dev" \
-    && sudo apt-get install -y --no-install-recommends $BUILDDEPS
+## R build dependencies
+sudo apt-get build-dep r-base
 ## -- BUILD R --
 cd /tmp/
 ## Download source code
@@ -92,9 +36,9 @@ CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdat
             --with-blas \
             --with-lapack \
             --with-tcltk \
+            --prefix=/usr/local/lib/R/${R_VERSION}
 #            --disable-nls \
 #            --without-recommended-packages \
-            --prefix=/usr/local/lib/R-${R_VERSION}
 ## Build and install
 make
 sudo make install
@@ -104,12 +48,12 @@ sudo make install
     # && ../bin/R CMD make check
 # -- end --
 ## Add a library directory (for user-installed packages)
-sudo mkdir -p /usr/local/lib/R-${R_VERSION}/site-library
-sudo chown root:staff /usr/local/lib/R-${R_VERSION}/site-library
-sudo chmod g+wx /usr/local/lib/R-${R_VERSION}/site-library
+sudo mkdir -p /usr/local/lib/R/${R_VERSION}/lib/R/site-library
+sudo chown root:staff /usr/local/lib/R/${R_VERSION}/lib/R/site-library
+sudo chmod g+wx /usr/local/lib/R/${R_VERSION}/lib/R/site-library
 ## Fix library path
-# echo "R_LIBS_USER='/usr/local/lib/R-${R_VERSION}/site-library'" >> /usr/local/R-${R_VERSION}/lib/etc/Renviron
-echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R-${R_VERSION}/site-library'}" >> /usr/local/lib/R-${R_VERSION}/etc/Renviron
+# echo "R_LIBS_USER='/usr/local/lib/R/${R_VERSION}/site-library'" >> /usr/local/R/${R_VERSION}/lib/etc/Renviron
+echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/${R_VERSION}/site-library'}" >> /usr/local/lib/R/${R_VERSION}/etc/Renviron
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
 MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE}
