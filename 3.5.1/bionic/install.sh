@@ -8,7 +8,7 @@ R_VERSION="3.5.1"
 # export LANG="en_US.UTF-8"
 
 ## R build dependencies
-sudo apt-get build-dep r-base
+apt-get build-dep r-base
 ## -- BUILD R --
 cd /tmp/
 ## Download source code
@@ -41,28 +41,28 @@ CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdat
 #            --without-recommended-packages \
 ## Build and install
 make
-sudo make install
+make install
 # -- Tests for R installation - should not be included into the final image --
 # && make install-tests \
     # && cd /usr/local/lib/R/tests \
     # && ../bin/R CMD make check
 # -- end --
 ## Add a library directory (for user-installed packages)
-sudo mkdir -p /usr/local/lib/R/${R_VERSION}/lib/R/site-library
+mkdir -p /usr/local/lib/R/${R_VERSION}/lib/R/site-library
 ## Fix library path
 echo "R_LIBS_USER=\${R_LIBS_USER-'~/R/x86_64-pc-linux-gnu-library/${R_VERSION}'}" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
 echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/${R_VERSION}/lib/R/site-library:/usr/local/lib/R/${R_VERSION}/lib/R/library'}" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
 MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE}
-sudo echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
+echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
 
 # Make this version the default
-sudo ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R
-sudo ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript
+ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R
+ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript
 # Make version available
-sudo ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R-${R_VERSION}
-sudo ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript-${R_VERSION}
+ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R-${R_VERSION}
+ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript-${R_VERSION}
 
 ## Clean up from R source install
 cd ~
