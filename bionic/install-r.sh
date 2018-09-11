@@ -8,7 +8,9 @@ R_VERSION=${1:-"3.5.1"}
 # export LANG="en_US.UTF-8"
 
 ## R build dependencies
+apt-get update
 apt-get build-dep r-base
+apt-get install curl libssl-dev libxml2-dev
 ## -- BUILD R --
 cd /tmp/
 ## Download source code
@@ -51,12 +53,17 @@ mkdir -p /usr/local/lib/R/${R_VERSION}/lib/R/site-library
 ## Fix library path
 echo "R_LIBS_USER='~/R/x86_64-pc-linux-gnu-library/${R_VERSION}'" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
 echo "R_LIBS=\${R_LIBS-'/usr/local/lib/R/${R_VERSION}/lib/R/site-library:/usr/local/lib/R/${R_VERSION}/lib/R/library'}" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Renviron
+echo ".libPaths('/usr/local/lib/R/${R_VERSION}/lib/R/library')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
+echo ".libPaths('/usr/local/lib/R/${R_VERSION}/lib/R/site-library')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
+echo ".libPaths('~/R/x86_64-pc-linux-gnu-library/${R_VERSION}')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
 MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE}
 echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
 
 # Make this version the default
+rm -vf /usr/local/bin/R
+rm -vf /usr/local/bin/Rscript
 ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R
 ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript
 # Make version available
@@ -66,3 +73,7 @@ ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript-${R
 ## Clean up from R source install
 cd ~
 rm -rf /tmp/R-${R_VERSION}
+
+## Install default packages
+R-${R_VERSION} -e 'install.packages("tidyverse")'
+R-${R_VERSION} -e 'for (pkg in rownames(available.packages(repos = "https://inwt-vmeh2.inwt.de/r-repo"))) try(install.packages(pkg))'
