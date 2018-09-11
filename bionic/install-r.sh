@@ -10,7 +10,10 @@ R_VERSION=${1:-"3.5.1"}
 ## R build dependencies
 apt-get update
 apt-get build-dep r-base
-apt-get install curl libssl-dev libxml2-dev
+apt-get install curl libssl-dev libxml2-dev libssh2-1-dev openjdk-8-jdk \
+        libbz2-dev liblzma-dev libpcre3-dev libpng-dev libgdal-dev
+# apt-get install libmysqlclient-dev
+
 ## -- BUILD R --
 cd /tmp/
 ## Download source code
@@ -70,10 +73,9 @@ ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript
 ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/R /usr/local/bin/R-${R_VERSION}
 ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript-${R_VERSION}
 
+# For R Java
+R-${R_VERSION} CMD javareconf
+
 ## Clean up from R source install
 cd ~
 rm -rf /tmp/R-${R_VERSION}
-
-## Install default packages
-R-${R_VERSION} -e 'install.packages("tidyverse")'
-R-${R_VERSION} -e 'for (pkg in rownames(available.packages(repos = "https://inwt-vmeh2.inwt.de/r-repo"))) try(install.packages(pkg))'
