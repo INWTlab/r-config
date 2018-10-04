@@ -11,7 +11,8 @@ R_VERSION=${1:-"3.5.1"}
 apt-get update
 apt-get build-dep r-base
 apt-get install curl libssl-dev libxml2-dev libssh2-1-dev openjdk-8-jdk \
-        libbz2-dev liblzma-dev libpcre3-dev libpng-dev libgdal-dev
+        libbz2-dev liblzma-dev libpcre3-dev libpng-dev libgdal-dev \
+        libglu1-mesa-dev freeglut3-dev mesa-common-dev
 # apt-get install libmysqlclient-dev
 
 ## -- BUILD R --
