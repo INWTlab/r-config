@@ -76,6 +76,8 @@ ln -s /usr/local/lib/R/${R_VERSION}/lib/R/bin/Rscript /usr/local/bin/Rscript-${R
 
 # For R Java
 R-${R_VERSION} CMD javareconf
+# Update 'recommended' packages to be inline with MRAN
+R-${R_VERSION} -e "update.packages(ask = FALSE)"
 
 ## Clean up from R source install
 cd ~
