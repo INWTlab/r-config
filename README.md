@@ -46,3 +46,21 @@ R -e 'sessionInfo()'
 R-3.5.1 -e 'sessionInfo()'
 R-3.4.4 -e 'sessionInfo()'
 ```
+
+## Gotchas
+
+`bionic/install-r.sh` assumes that the local installation of apt has the source repositories for r-base activated. If this is not the case, e.g. in a fresh installation of a server ubuntu, you may add the following lines to the configuration:
+
+```
+sudo su -c "echo 'deb-src http://de.archive.ubuntu.com/ubuntu/ bionic universe
+deb-src http://de.archive.ubuntu.com/ubuntu/ bionic-updates universe' > /etc/apt/sources.list.d/r-sources.list"
+sudo apt update
+```
+
+and remove it with
+
+```
+sudo rm /etc/apt/sources.list.d/r-sources.list
+sudo apt clean
+sudo apt update
+```
