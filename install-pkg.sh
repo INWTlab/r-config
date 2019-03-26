@@ -1,8 +1,5 @@
 #!/bin/bash
 # install a R-package for all your R-versions
-PKG=${1:-""}
-
-for R_VERSION in `ls /usr/local/bin/R-* | cat`;
-do
-    $R_VERSION -e "install.packages(\"${PKG}\")"
-done
+R_VERSION=/usr/local/bin/R-${1:-"3.5.2"}
+PKG=${2:-""}
+$R_VERSION -e "install.packages(\"${PKG}\")"

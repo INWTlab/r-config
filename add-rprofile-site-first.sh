@@ -1,5 +1,7 @@
 #!/bin/bash
 # add .First function to Rprofile.site
+echo "Deprecated: use set-first.sh"
+
 R_VERSION=${1:-"3.5.1"}
 RPROFILE=/usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
 echo "Appending to $RPROFILE"
