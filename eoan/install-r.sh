@@ -73,7 +73,7 @@ sed -i "s/^R_LIBS_USER.*/R_LIBS_USER=\${R_LIBS_USER-'~\/R\/x86_64-pc-linux-gnu-l
 ## install packages from date-locked MRAN snapshot of CRAN
 [ -z "$BUILD_DATE" ] && BUILD_DATE=$(TZ="America/Los_Angeles" date -I) || true
 MRAN=https://mran.microsoft.com/snapshot/${BUILD_DATE}
-echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" >> /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
+echo "options(repos = c(CRAN='$MRAN'), download.file.method = 'libcurl')" > /usr/local/lib/R/${R_VERSION}/lib/R/etc/Rprofile.site
 
 # Make this version the default
 rm -vf /usr/local/bin/R
