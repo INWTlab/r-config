@@ -9,7 +9,7 @@ R_VERSION=${1:-"3.5.1"}
 
 ## R build dependencies
 apt-get update
-apt-get build-dep r-base
+apt-get build-dep -y r-base
 apt-get install -y \
         curl \
         libssl-dev \
