@@ -20,6 +20,7 @@ pipeline {
         always {
             sh '''
                docker stop tmp_deb_builder || :
+               docker rm tmp_deb_builder || :
                docker rmi tmp_deb_builder || :
             '''
         }
