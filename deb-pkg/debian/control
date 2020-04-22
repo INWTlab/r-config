@@ -1,0 +1,15 @@
+Source: inwt
+Section: unknown
+Priority: optional
+Maintainer: Andreas Neudecker <andreas.neudecker@inwt-statistics.de>
+Build-Depends: debhelper-compat (= 12)
+Standards-Version: 4.4.0
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/inwt
+#Vcs-Git: https://salsa.debian.org/debian/inwt.git
+
+Package: inwt
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
