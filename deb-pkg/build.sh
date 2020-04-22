@@ -6,10 +6,13 @@ RELEASE=$(lsb_release -sc)
 
 dpkg-buildpackage --no-sign
 
-mkdir -p /tmp/deb-repo/pool/main/n \
-      /tmp/deb-repo/dists/$RELEASE/main/binary-{amd64,i386}
+mkdir -p /tmp/deb-repo/amd64
 
-mv ../*.deb /tmp/deb-repo/pool/main/n
+mv ../*.deb /tmp/deb-repo/amd64
 
-dpkg-scanpackages -m /tmp/deb-repo/pool | gzip > \
-  /tmp/deb-repo/dists/$RELEASE/main/binary-amd64/Packages.gz
+cd /tmp/deb-repo
+
+apt-ftparchive --arch amd64 packages amd64 > Packages
+gzip -k -f Packages
+
+apt-ftparchive release . > Release
