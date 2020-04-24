@@ -8,10 +8,10 @@ pipeline {
         stage('Build package') {
             steps {
                 sh '''
-                   docker build -t tmp_deb_builder .
-                   docker run --rm --name tmp_deb_builder \
+                   docker build -t tmp-deb-builder .
+                   docker run --rm --name tmp-deb-builder \
                      -v /var/www/html/deb-repo:/tmp/deb-repo/ \
-                     tmp_deb_builder
+                     tmp-deb-builder
                 '''
             }
         }
@@ -19,9 +19,9 @@ pipeline {
     post {
         always {
             sh '''
-               docker stop tmp_deb_builder || :
-               docker rm tmp_deb_builder || :
-               docker rmi tmp_deb_builder || :
+               docker stop tmp-deb-builder || :
+               docker rm tmp-deb-builder || :
+               docker rmi tmp-deb-builder || :
             '''
         }
     }
