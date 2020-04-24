@@ -4,14 +4,20 @@ pipeline {
       disableConcurrentBuilds()
       timeout(time: 3, unit: 'HOURS')
     }
+    environment {
+        NWORKERS = 2
+        MEMORY = "10g"
+    }
     stages {
         stage('Build package') {
             steps {
                 sh '''
-                   docker build -t tmp-deb-builder .
-                   docker run --rm --name tmp-deb-builder \
-                     -v /var/www/html/deb-repo:/tmp/deb-repo/ \
-                     tmp-deb-builder
+                  docker build -t tmp-deb-builder .
+                  docker run --rm --name tmp-deb-builder \
+                    --memory=$MEMORY --memory-swap=$MEMORY \
+                    --cpus=$NWORKERS -e NWORKERS=$NWORKERS \
+                    -v /var/www/html/deb-repo:/tmp/deb-repo/ \
+                    tmp-deb-builder
                 '''
             }
         }
