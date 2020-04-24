@@ -1,5 +1,7 @@
 FROM ubuntu:eoan
 
+RUN sed -i 's_# deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_' /etc/apt/sources.list
+
 ENV DEBIAN_FRONTEND=noninteractive
 
 ENV TZ=Europe/Berlin
@@ -10,13 +12,23 @@ RUN apt-get update && \
   debhelper-compat \
   lsb-release \
   apt-utils \
-  ca-certificates \
-  gnupg2
+  dh-make && \
+  apt-get build-dep -y r-base
 
-RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
-  echo deb https://cran.r-project.org/bin/linux/ubuntu/ eoan-cran35/ >> /etc/apt/sources.list && \
-  apt-get update && \
-  apt-get install -y r-base=3.6.1-7eoan r-recommended=3.6.1-7eoan r-base-html r-doc-html
+# install specific R version
+ENV R_VERSION=3.6.0
+
+RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
+  tar -xzvf R-${R_VERSION}.tar.gz && \
+  cd R-${R_VERSION} && \
+  ./configure \
+  --prefix=/opt/R/${R_VERSION} \
+  --enable-memory-profiling \
+  --enable-R-shlib \
+  --with-blas \
+  --with-lapack && \
+  make && \
+  make install
 
 # dependencies for R packages
 RUN apt-get install -y \
