@@ -1,5 +1,5 @@
 #!/bin/sh
-# postrm script for inwt
+# postrm script for r-3.6.0-packages
 #
 # see: dh_installdeb(1)
 

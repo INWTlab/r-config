@@ -18,6 +18,10 @@ RUN apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD5
   apt-get update && \
   apt-get install -y r-base=3.6.1-7eoan r-recommended=3.6.1-7eoan r-base-html r-doc-html
 
+# dependencies for R packages
+RUN apt-get install -y \
+  libssl-dev # openssl
+
 WORKDIR /app
 
 COPY deb-pkg/. .

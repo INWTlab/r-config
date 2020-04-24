@@ -1,11 +1,5 @@
-inwt (1.0.1) UNRELEASED; urgency=medium
-
-  * Update inwt 
-
- -- Andreas Neudecker <andreas.neudecker@inwt-statistics.de>  Wed, 22 Apr 2020 23:38:44 +0200
-
-inwt (1.0.0) unstable; urgency=medium
+r-3.6.0-packages (1.0.0) unstable; urgency=medium
 
   * Initial Release.
 
- -- Andreas Neudecker <andreas.neudecker@inwt-statistics.de>  Wed, 22 Apr 2020 21:09:31 +0200
+ -- Andreas Neudecker <andreas.neudecker@inwt-statistics.de>  Fri, 24 Apr 2020 12:24:55 +0200

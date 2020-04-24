@@ -1,5 +1,5 @@
 #!/bin/sh
-# postinst script for inwt
+# postinst script for r-3.6.0-packages
 #
 # see: dh_installdeb(1)
 

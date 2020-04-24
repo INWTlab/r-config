@@ -1,15 +1,15 @@
-Source: inwt
+Source: r-3.6.0-packages
 Section: unknown
 Priority: optional
 Maintainer: Andreas Neudecker <andreas.neudecker@inwt-statistics.de>
 Build-Depends: debhelper-compat (= 12)
 Standards-Version: 4.4.0
 Homepage: <insert the upstream URL, if relevant>
-#Vcs-Browser: https://salsa.debian.org/debian/inwt
-#Vcs-Git: https://salsa.debian.org/debian/inwt.git
+#Vcs-Browser: https://salsa.debian.org/debian/r-3.6.0-packages
+#Vcs-Git: https://salsa.debian.org/debian/r-3.6.0-packages.git
 
-Package: inwt
+Package: r-3.6.0-packages
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, r-3.6.0
 Description: <insert up to 60 chars description>
  <insert long description, indented with spaces>
