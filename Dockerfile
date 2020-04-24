@@ -22,7 +22,6 @@ RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
   tar -xzvf R-${R_VERSION}.tar.gz && \
   cd R-${R_VERSION} && \
   ./configure \
-  --prefix=/opt/R/${R_VERSION} \
   --enable-memory-profiling \
   --enable-R-shlib \
   --with-blas \
