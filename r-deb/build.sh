@@ -14,7 +14,7 @@ PACKAGE_NAME=r-${R_VERSION}
 PACKAGE_NAME_FULL=${PACKAGE_NAME}_$PACKAGE_VERSION
 
 curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz
-tar -xzvf R-${R_VERSION}.tar.gz
+tar -xzf R-${R_VERSION}.tar.gz
 cd R-${R_VERSION}
 
 dh_make --native \
