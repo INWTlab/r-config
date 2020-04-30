@@ -1,10 +1,18 @@
 FROM ubuntu:eoan
 
+## settings
+
+ENV R_VERSION=3.6.0
+ENV MRAN_TIMESTAMP=2019-12-12
+ENV PACKAGE_VERSION=0.1.0
+ENV UBUNTU_RELEASE=eoan
+ENV DEBIAN_FRONTEND=noninteractive
+ENV TZ=Europe/Berlin
+
+## end of settings
+
 RUN sed -i 's_# deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_' /etc/apt/sources.list
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-ENV TZ=Europe/Berlin
 
 RUN apt-get update && \
   apt-get install -y \
@@ -15,8 +23,6 @@ RUN apt-get update && \
   dh-make && \
   apt-get build-dep -y r-base
 
-# install specific R version
-ENV R_VERSION=3.6.0
 
 RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
   tar -xzvf R-${R_VERSION}.tar.gz && \
@@ -35,6 +41,8 @@ RUN apt-get install -y \
 
 WORKDIR /app
 
-COPY deb-pkg/. .
+COPY r-deb r-deb
 
-CMD ["bash","build.sh"]
+COPY r-packages-deb r-packages-deb
+
+CMD ["bash","r-deb/build.sh"]

@@ -2,10 +2,15 @@
 
 set -e
 
-R_VERSION=3.6.0
-PACKAGE_VERSION=1.0.2
+R_VERSION=${R_VERSION:-3.6.0}
+MRAN_TIMESTAMP=${MRAN:-2019-12-12}
+PACKAGE_VERSION=${PACKAGE_VERSION:-1.0.0}
+UBUNTU_RELEASE=${UBUNTU_RELEASE:-eoan}
+
+MRAN=https://mran.microsoft.com/snapshot/${MRAN_TIMESTAMP}
 PACKAGE_NAME=r-${R_VERSION}
 PACKAGE_NAME_FULL=${PACKAGE_NAME}_$PACKAGE_VERSION
+
 curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz
 tar -xzvf R-${R_VERSION}.tar.gz
 cd R-${R_VERSION}
@@ -18,6 +23,7 @@ dh_make --native \
   -y
 
 # custom configuration for r package
+
 echo /opt/R/$R_VERSION/bin/R usr/local/bin/R-$R_VERSION >> debian/$PACKAGE_NAME.links
 echo /opt/R/$R_VERSION/bin/Rscript usr/local/bin/Rscript-$R_VERSION >> debian/$PACKAGE_NAME.links
 cat ../Rprofile >> src/library/profile/Rprofile.unix
@@ -27,17 +33,22 @@ sed -i "s/.*dh_auto_configure --.*/\tdh_auto_configure -- --prefix=\/opt\/R\/${R
 
 # end custom configuration
 
-RELEASE=$(lsb_release -sc)
-
 dpkg-buildpackage --no-sign
 
-mkdir -p /tmp/deb-repo/amd64
+mkdir -p /tmp/deb-repo/$UBUNTU_RELEASE/amd64
 
-mv ../*.deb /tmp/deb-repo/amd64
+mv ../*.deb /tmp/deb-repo/$UBUNTU_RELEASE/amd64
 
-cd /tmp/deb-repo
+cd /tmp/deb-repo/$UBUNTU_RELEASE
 
 apt-ftparchive --arch amd64 packages amd64 > Packages
 gzip -k -f Packages
 
 apt-ftparchive release . > Release
+
+# sign Release file
+gpg --import --passphrase-file ~/.gpg/passphrase \
+    --batch --pinentry-mode loopback ~/.gpg/private.key
+
+gpg -abs --passphrase-file ~/.gpg/pgp_passphrase -o Release.gpg \
+    --batch --pinentry-mode loopback Release

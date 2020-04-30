@@ -18,10 +18,10 @@ MRAN=https://mran.microsoft.com/snapshot/${MRAN_TIMESTAMP}
 # add r-3.6.0 as dependency to debian/control
 # add debian/install: files/opt/* opt
 
+# TODO: Update package version
+
 mkdir -p files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
 Rscript installPackages.R $MRAN files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
-
-RELEASE=$(lsb_release -sc)
 
 dpkg-buildpackage --no-sign
 
