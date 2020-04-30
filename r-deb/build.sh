@@ -52,5 +52,5 @@ apt-ftparchive release . > Release
 gpg --import --passphrase-file ~/.gpg/passphrase \
     --batch --pinentry-mode loopback ~/.gpg/private.key
 
-gpg -abs --passphrase-file ~/.gpg/pgp_passphrase -o Release.gpg \
+gpg -abs --passphrase-file ~/.gpg/passphrase -o Release.gpg \
     --batch --pinentry-mode loopback Release
