@@ -24,8 +24,8 @@ pipeline {
             steps {
                 sh '''
                     mkdir -p .gpg
-                    cp $GPG_PASSPHRASE .gpg/passphrase
-                    cp $GPG_KEY .gpg/private.key
+                    cp -f $GPG_PASSPHRASE .gpg/passphrase
+                    cp -f $GPG_KEY .gpg/private.key
 
                     docker run --rm --name tmp-deb-builder-r \
                       --memory=$MEMORY --memory-swap=$MEMORY \
@@ -45,8 +45,8 @@ pipeline {
             steps {
                 sh '''
                     mkdir -p .gpg
-                    cp $GPG_PASSPHRASE .gpg/passphrase
-                    cp $GPG_KEY .gpg/private.key
+                    cp -f $GPG_PASSPHRASE .gpg/passphrase
+                    cp -f $GPG_KEY .gpg/private.key
 
                     docker run --rm --name tmp-deb-builder-r-packages \
                       --memory=$MEMORY --memory-swap=$MEMORY \
