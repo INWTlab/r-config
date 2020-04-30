@@ -63,7 +63,7 @@ pipeline {
                rm -rf .gpg
                docker stop tmp-deb-builder-r || :
                docker stop tmp-deb-builder-r-packages || :
-               docker rmi tmp-deb-builder || :
+               # docker rmi tmp-deb-builder || :
             '''
         }
     }
