@@ -40,7 +40,7 @@ apt-ftparchive release . > Release
 
 # sign Release file
 gpg --import --passphrase-file ~/.gpg/passphrase \
-    --batch --pinentry-mode loopback ~/.gpg/private.key
+    --batch --yes --pinentry-mode loopback ~/.gpg/private.key
 
 gpg -abs --passphrase-file ~/.gpg/passphrase -o Release.gpg \
-    --batch --pinentry-mode loopback Release
+    --batch --yes --pinentry-mode loopback Release
