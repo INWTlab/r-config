@@ -44,3 +44,7 @@ gpg --import --passphrase-file ~/.gpg/passphrase \
 
 gpg -abs --passphrase-file ~/.gpg/passphrase -o Release.gpg \
     --batch --yes --pinentry-mode loopback Release
+
+gpg --yes --passphrase-file ~/.gpg/passphrase \
+    --batch --pinentry-mode loopback \
+    --clearsign -o InRelease Release
