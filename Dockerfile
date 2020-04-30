@@ -8,11 +8,12 @@ ENV PACKAGE_VERSION=0.1.0
 ENV UBUNTU_RELEASE=eoan
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Berlin
+ENV HOME=/app
+WORKDIR /app
 
 ## end of settings
 
 RUN sed -i 's_# deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_' /etc/apt/sources.list
-
 
 RUN apt-get update && \
   apt-get install -y \
@@ -38,8 +39,6 @@ RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
 # dependencies for R packages
 RUN apt-get install -y \
   libssl-dev # openssl
-
-WORKDIR /app
 
 COPY r-deb r-deb
 
