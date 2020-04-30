@@ -58,3 +58,5 @@ gpg -abs --yes --passphrase-file ~/.gpg/passphrase -o Release.gpg \
 gpg --yes --passphrase-file ~/.gpg/passphrase \
     --batch --pinentry-mode loopback \
     --clearsign -o InRelease Release
+
+gpg --output KEY.gpg --armor --export --yes

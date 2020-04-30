@@ -11,16 +11,14 @@ UBUNTU_RELEASE=${UBUNTU_RELEASE:-eoan}
 
 MRAN=https://mran.microsoft.com/snapshot/${MRAN_TIMESTAMP}
 
-# dh_make -y \
-#   --native \
-#   --single \
-#   --packagename r-$R_VERSION-packages_$PACKAGE_VERSION \
-#   --email andreas.neudecker@inwt-statistics.de
+dh_make -y \
+  --native \
+  --single \
+  --packagename r-$R_VERSION-packages_$PACKAGE_VERSION \
+  --email andreas.neudecker@inwt-statistics.de
 
-# add r-3.6.0 as dependency to debian/control
-# add debian/install: files/opt/* opt
-
-# TODO: Update package version
+sed -i 's/Depends.*/Depends: ${shlibs:Depends}, ${misc:Depends}, r-3.6.0/' debian/control
+echo 'files/opt/* opt' >> debian/install
 
 mkdir -p files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
 Rscript installPackages.R $MRAN files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
@@ -48,3 +46,5 @@ gpg -abs --passphrase-file ~/.gpg/passphrase -o Release.gpg \
 gpg --yes --passphrase-file ~/.gpg/passphrase \
     --batch --pinentry-mode loopback \
     --clearsign -o InRelease Release
+
+gpg --output KEY.gpg --armor --export --yes
