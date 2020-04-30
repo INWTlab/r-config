@@ -2,6 +2,8 @@
 
 set -e
 
+cd r-packages-deb
+
 R_VERSION=${R_VERSION:-3.6.0}
 MRAN_TIMESTAMP=${MRAN:-2019-12-12}
 PACKAGE_VERSION=${PACKAGE_VERSION:-1.0.0}
