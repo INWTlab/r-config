@@ -1,0 +1,11 @@
+Package: r-3.6.0-packages
+Version: 1.0.0
+Architecture: amd64
+Maintainer: Andreas Neudecker <andreas.neudecker@inwt-statistics.de>
+Installed-Size: 721
+Depends: r-3.6.0
+Section: unknown
+Priority: optional
+Homepage: <insert the upstream URL, if relevant>
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>

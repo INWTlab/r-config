@@ -1,0 +1,15 @@
+Source: r-3.6.0
+Section: unknown
+Priority: optional
+Maintainer: Andreas Neudecker <andreas.neudecker@inwt-statistics.de>
+Build-Depends: debhelper-compat (= 12), autotools-dev
+Standards-Version: 4.4.0
+Homepage: <insert the upstream URL, if relevant>
+#Vcs-Browser: https://salsa.debian.org/debian/r-3.6.0
+#Vcs-Git: https://salsa.debian.org/debian/r-3.6.0.git
+
+Package: r-3.6.0
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: <insert up to 60 chars description>
+ <insert long description, indented with spaces>
