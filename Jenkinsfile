@@ -30,6 +30,7 @@ pipeline {
                     docker run --rm --name tmp-deb-builder-r \
                       --memory=$MEMORY --memory-swap=$MEMORY \
                       --cpus=$NWORKERS -e NWORKERS=$NWORKERS \
+                      -e DEBFULLNAME="Andreas Neudecker" \
                       -v $PWD/.gpg:/app/.gpg \
                       -v /var/www/html/deb-repo:/tmp/deb-repo/ \
                       tmp-deb-builder bash r-deb/build.sh
@@ -50,6 +51,7 @@ pipeline {
                     docker run --rm --name tmp-deb-builder-r-packages \
                       --memory=$MEMORY --memory-swap=$MEMORY \
                       --cpus=$NWORKERS -e NWORKERS=$NWORKERS \
+                      -e DEBFULLNAME="Andreas Neudecker" \
                       -v $PWD/.gpg:/app/.gpg \
                       -v /var/www/html/deb-repo:/tmp/deb-repo/ \
                       tmp-deb-builder bash r-packages-deb/build.sh
