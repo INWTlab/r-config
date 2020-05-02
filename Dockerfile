@@ -38,8 +38,8 @@ RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
 
 # dependencies for R packages
 RUN apt-get install -y \
-  libssl-dev \ # openssl
-  libglu1-mesa-dev \ # rgl
+  libssl-dev \
+  libglu1-mesa-dev
 
 COPY r-deb r-deb
 
