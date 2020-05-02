@@ -19,7 +19,6 @@ dh_make -y \
 
 sed -i 's/Depends.*/Depends: ${shlibs:Depends}, ${misc:Depends}, r-3.6.0, libssl-dev, libglu1-mesa-dev/' debian/control
 echo 'files/opt/* opt' >> debian/install
-echo 'files/usr/* usr' >> debian/install
 
 mkdir -p files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
 Rscript installPackages.R $MRAN files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library
