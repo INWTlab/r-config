@@ -43,9 +43,7 @@ RUN apt-get install -y \
   libxml2-dev \
   libmagick++-dev \
   libmariadbclient-dev \
-  libpq-dev \
-  libgdal-dev
-
+  libpq-dev
 
 COPY r-deb r-deb
 
