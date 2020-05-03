@@ -6,6 +6,8 @@
 ## toInstall <- setdiff(deps, rownames(inwtPkgs))
 ## writeLines(toInstall, "packages.txt"
 
+options(warn = 2)
+
 args <- commandArgs(trailing = TRUE)
 
 mran <- args[1]
