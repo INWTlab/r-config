@@ -83,3 +83,21 @@ sudo rm /etc/apt/sources.list.d/r-sources.list
 sudo apt clean
 sudo apt update
 ```
+
+## Debian Packages
+
+Folder `r-deb` and `r-deb-packages` contain scripts to build versioned deb packages for R and R-Packages.
+
+- R Version, Ubuntu Version etc. are specified in the `Dockerfile`
+- Package list is contained in `r-deb-packages/packages.txt`. For an example script to create this file see `r-deb-packages/installPackages.R`
+- You need to mount the following folders into the container (see Jenkinsfile)
+  - a repository directory into the container at `/tmp/deb-repo`
+  - a folder containing gpg key (private.key) and a passphrase for that key at `/app/.gpg`
+
+Add the repository to your /apt/sources.list.d folder. Example:
+
+```
+deb https://<hostname>/deb-repo/eoan / 
+```
+
+Installation can be done via `apt update && apt install r-3.6.0 r-3.6.0-packages`
