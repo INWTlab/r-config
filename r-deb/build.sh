@@ -31,7 +31,7 @@ echo /opt/R/$R_VERSION/bin/Rscript usr/local/bin/Rscript-$R_VERSION >> debian/$P
 cat ../Rprofile >> src/library/profile/Rprofile.unix
 sed -i '22 a AC_CONFIG_MACRO_DIR([m4])' configure.ac
 sed -i "s/.*override_dh_auto_configure:.*/override_dh_auto_configure:/" debian/rules
-sed -i "s/.*dh_auto_configure --.*/\tdh_auto_configure -- --prefix=\/opt\/R\/${R_VERSION}/" debian/rules
+sed -i "s/.*dh_auto_configure --.*/\tdh_auto_configure -- --prefix=\/opt\/R\/${R_VERSION} --enable-R-shlib --enable-memory-profiling --with-readline --with-blas --with-lapack --with-tcltk --disable-nls/" debian/rules
 
 # end custom configuration
 
