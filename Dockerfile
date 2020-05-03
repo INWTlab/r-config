@@ -42,7 +42,7 @@ RUN apt-get install -y \
   libglu1-mesa-dev \
   libxml2-dev \
   libmagick++-dev \
-  libmariadbclient-dev \
+  libmysqlclient-dev \
   libpq-dev \
   libgdal-dev
 
