@@ -11,7 +11,7 @@ modules
 openssl
 openxlsx
 psych
-rgeolocate
+# rgeolocate # ignore because of bug https://github.com/Ironholds/rgeolocate/pull/56
 tidyr
 yaml
 roxygen2

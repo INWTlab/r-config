@@ -14,5 +14,8 @@ mran <- args[1]
 lib <- args[2]
 
 packages <- readLines("packages.txt")
+packages <- gsub("#.*", "", packages)
+packages <- trimws(packages)
+packages <- Filter(function(x) x != "", packages)
 
 install.packages(packages, lib = lib, repos = mran)
