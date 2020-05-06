@@ -270,7 +270,7 @@ Bchron
 leaflet
 maps
 raster
-rgdal # cannot install libgdal-dev because it requires libmysqlclient-dev which is incompatible to libmariadbclient-dev
+rgdal
 magick
 ellipse
 colourpicker
