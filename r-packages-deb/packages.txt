@@ -38,8 +38,8 @@ futile.options
 digest
 gtable
 lazyeval
-MASS
-mgcv
+# MASS # already in r-3.6.0
+# mgcv # already in r-3.6.0
 reshape2
 scales
 viridisLite
@@ -55,9 +55,9 @@ rJava
 askpass
 zip
 mnormt
-foreign
-lattice
-nlme
+# foreign # already in r-3.6.0
+# lattice # already in r-3.6.0
+# nlme # already in r-3.6.0
 purrr
 stringi
 sys
@@ -68,7 +68,7 @@ bit
 curl
 mime
 formatR
-Matrix
+# Matrix # already in r-3.6.0
 hms
 prettyunits
 crayon
@@ -102,11 +102,11 @@ Hmisc
 xtable
 gargle
 rapidjsonr
-survival
+# survival # already in r-3.6.0
 latticeExtra
-cluster
-rpart
-nnet
+# cluster # already in r-3.6.0
+# rpart # already in r-3.6.0
+# nnet # already in r-3.6.0
 acepack
 gridExtra
 htmlTable
@@ -129,7 +129,7 @@ rmarkdown
 devtools
 readr
 usethis
-codetools
+# codetools # already in r-3.6.0
 stringdist
 testthat
 igraph
@@ -185,9 +185,9 @@ iterators
 generics
 gower
 ipred
-class
+# class # already in r-3.6.0
 prodlim
-KernSmooth
+# KernSmooth # already in r-3.6.0
 lava
 numDeriv
 SQUAREM
@@ -208,7 +208,7 @@ gbm
 lme4
 globals
 listenv
-boot
+# boot # already in r-3.6.0
 minqa
 nloptr
 humanFormat
@@ -246,7 +246,7 @@ fGarch
 modeltools
 goftest
 DEoptimR
-spatial
+# spatial # already in r-3.6.0
 gss
 stabledist
 fastICA
