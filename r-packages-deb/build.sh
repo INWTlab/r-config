@@ -17,7 +17,7 @@ dh_make -y \
   --packagename r-$R_VERSION-packages_$PACKAGE_VERSION \
   --email andreas.neudecker@inwt-statistics.de
 
-sed -i 's/^Depends.*/Depends: ${shlibs:Depends}, ${misc:Depends}, r-3.6.0, libssl-dev, libglu1-mesa-dev, libxml2-dev, libmagick++-dev, libmariadbclient-dev, libpq-dev/' debian/control
+sed -i 's/^Depends.*/Depends: ${shlibs:Depends}, ${misc:Depends}, r-3.6.0, libssl-dev, libglu1-mesa-dev, libxml2-dev, libmagick++-dev, libmysqlclient-dev, libpq-dev/' debian/control
 echo 'files/opt/* opt' >> debian/install
 
 mkdir -p files/opt/R/$R_VERSION/lib/x86_64-linux-gnu/R/library

@@ -33,6 +33,18 @@ sed -i '22 a AC_CONFIG_MACRO_DIR([m4])' configure.ac
 sed -i "s/.*override_dh_auto_configure:.*/override_dh_auto_configure:/" debian/rules
 sed -i "s/.*dh_auto_configure --.*/\tdh_auto_configure -- --prefix=\/opt\/R\/${R_VERSION} --enable-R-shlib --enable-memory-profiling --with-readline --with-blas --with-lapack --with-tcltk --disable-nls/" debian/rules
 
+export R_PAPERSIZE=letter
+export R_BATCHSAVE="--no-save --no-restore"
+export R_BROWSER=xdg-open
+export PAGER=/usr/bin/pager
+export PERL=/usr/bin/perl
+export R_UNZIPCMD=/usr/bin/unzip
+export R_ZIPCMD=/usr/bin/zip
+export R_PRINTCMD=/usr/bin/lpr
+export LIBnn=lib
+export AWK=/usr/bin/awk
+export CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g"
+export CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g"
 # end custom configuration
 
 dpkg-buildpackage --no-sign
