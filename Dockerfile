@@ -44,7 +44,8 @@ RUN apt-get update && \
   libxml2-dev \
   libmagick++-dev \
   libmysqlclient-dev \
-  libpq-dev
+  libpq-dev \
+  libgdal-dev  
 
 COPY r-deb r-deb
 
