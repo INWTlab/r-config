@@ -5,5 +5,14 @@ options(
   repos = c(
     CRAN = "https://mran.microsoft.com/snapshot/2019-07-04",
     INWT = "https://inwt-vmeh2.inwt.de/r-repo"
-  )
+  ),
+  encoding = "utf-8"
 )
+
+.First <- function() {
+  if (!interactive()) return(invisible(NULL))
+  cat("Repos are set to:\n")
+  for (repo in getOption("repos")) cat("  -", repo, "\n")
+  cat("Library paths are set to:\n")
+  for (lib in .libPaths()) cat("  -", lib, "\n")
+}

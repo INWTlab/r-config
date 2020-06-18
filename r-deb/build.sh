@@ -28,6 +28,7 @@ dh_make --native \
 
 echo /opt/R/$R_VERSION/bin/R usr/local/bin/R-$R_VERSION >> debian/$PACKAGE_NAME.links
 echo /opt/R/$R_VERSION/bin/Rscript usr/local/bin/Rscript-$R_VERSION >> debian/$PACKAGE_NAME.links
+sed -i 's/MRAN_TIMESTAMP/'"$MRAN_TIMESTAMP"'/' ../Rprofile
 cat ../Rprofile >> src/library/profile/Rprofile.unix
 sed -i '22 a AC_CONFIG_MACRO_DIR([m4])' configure.ac
 sed -i "s/.*override_dh_auto_configure:.*/override_dh_auto_configure:/" debian/rules
