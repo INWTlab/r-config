@@ -5,8 +5,7 @@ options(
   repos = c(
     CRAN = "https://mran.microsoft.com/snapshot/2019-07-04",
     INWT = "https://inwt-vmeh2.inwt.de/r-repo"
-  ),
-  encoding = "UTF-8"
+  )
 )
 
 .First <- function() {
