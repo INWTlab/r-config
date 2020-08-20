@@ -25,7 +25,7 @@ RUN apt-get update && \
   apt-get build-dep -y r-base
 
 
-RUN curl -O https://cran.rstudio.com/src/base/R-3/R-${R_VERSION}.tar.gz && \
+RUN curl -O https://cran.rstudio.com/src/base/R-4/R-${R_VERSION}.tar.gz && \
   tar -xzf R-${R_VERSION}.tar.gz && \
   cd R-${R_VERSION} && \
   ./configure \
