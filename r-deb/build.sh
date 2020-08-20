@@ -46,6 +46,7 @@ export LIBnn=lib
 export AWK=/usr/bin/awk
 export CFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g"
 export CXXFLAGS="-g -O2 -fstack-protector-strong -Wformat -Werror=format-security -Wdate-time -D_FORTIFY_SOURCE=2 -g"
+export TZ=`date +%Z`
 # end custom configuration
 
 dpkg-buildpackage --no-sign
