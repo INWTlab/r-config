@@ -1,11 +1,11 @@
-FROM ubuntu:eoan
+FROM ubuntu:focal
 
 ## settings
 
-ENV R_VERSION=3.6.0
-ENV MRAN_TIMESTAMP=2019-12-12
+ENV R_VERSION=4.0.1
+ENV MRAN_TIMESTAMP=2020-06-22
 ENV PACKAGE_VERSION=0.1.0
-ENV UBUNTU_RELEASE=eoan
+ENV UBUNTU_RELEASE=focal
 ENV DEBIAN_FRONTEND=noninteractive
 ENV TZ=Europe/Berlin
 ENV HOME=/app
@@ -13,7 +13,7 @@ WORKDIR /app
 
 ## end of settings
 
-RUN sed -i 's_# deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_deb-src http://archive.ubuntu.com/ubuntu/ eoan universe_' /etc/apt/sources.list
+RUN sed -i 's_# deb-src http://archive.ubuntu.com/ubuntu/ focal universe_deb-src http://archive.ubuntu.com/ubuntu/ focal universe_' /etc/apt/sources.list
 
 RUN apt-get update && \
   apt-get install -y \

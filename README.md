@@ -97,7 +97,7 @@ Folder `r-deb` and `r-deb-packages` contain scripts to build versioned deb packa
 Add the repository to your /apt/sources.list.d folder. Example:
 
 ```
-deb https://<hostname>/deb-repo/eoan / 
+deb https://<hostname>/deb-repo/focal / 
 ```
 
 Installation can be done via `apt update && apt install r-3.6.0 r-3.6.0-packages`
