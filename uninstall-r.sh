@@ -15,7 +15,7 @@ rm -rf $RSCRIPT_VERSION
 echo "removing library in $R_LIBRARY"
 rm -rf $R_LIBRARY
 
-echo "removing installation folder $R_LIBRARY"
+echo "removing installation folder $R_INSTALLATION"
 rm -rf $R_INSTALLATION
 
 echo ""
