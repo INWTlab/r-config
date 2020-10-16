@@ -31,7 +31,10 @@ apt install -y \
         mesa-common-dev \
         sed \
         libpq-dev \
-        libmysqlclient-dev
+        libnode-dev \       # V8
+        libmagick++-dev \   # animation
+        libsodium-dev \     # sodium
+        libmysqlclient-dev  # dbtools
 
 # apt-get install libmysqlclient-dev
 
